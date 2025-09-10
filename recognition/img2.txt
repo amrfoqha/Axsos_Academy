@@ -1,0 +1,8 @@
+the tags used in second img is :-
+
+h2
+h3
+p
+button
+img
+footer

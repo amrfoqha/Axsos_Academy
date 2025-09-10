@@ -1,0 +1,12 @@
+the tags used in fourth img is :-
+nav
+a or buttons
+h2
+p
+em
+img
+ul 
+li
+button
+footer
+

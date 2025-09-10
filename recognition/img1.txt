@@ -1,0 +1,10 @@
+the tags used in first img is :-
+
+h1
+h2
+p
+strong
+ul
+li
+button or a(href)
+img

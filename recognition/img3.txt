@@ -1,0 +1,9 @@
+the tags used in third img is :-
+a (href)
+ul
+li
+button
+h2
+h3
+p
+img
