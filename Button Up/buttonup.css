@@ -1,0 +1,35 @@
+* {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.search {
+  width: 120px;
+  height: 30px;
+  border: 2px solid aqua;
+  background-color: rgb(247, 240, 240);
+  color: rgb(153, 189, 243);
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.add {
+  background-color: rgb(38, 216, 207);
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 26px;
+  border: none;
+}
+
+.create {
+  background-color: darkviolet;
+  width: 150px;
+  height: 40px;
+  color: white;
+  font-size: large;
+  font-weight: 522;
+  box-shadow: black 3px 3px;
+  border: black 3px solid;
+}

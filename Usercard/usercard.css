@@ -1,0 +1,52 @@
+* {
+  font-family: Roboto;
+}
+h2,
+p {
+  margin: 0;
+}
+.card {
+  margin: 50px auto;
+  width: 500px;
+  height: 280px;
+  border: 2px solid rgb(23, 162, 184);
+}
+.header {
+  background-color: rgb(23, 162, 184);
+  width: 100%;
+  height: 35%;
+  position: relative;
+}
+
+.user-circle {
+  position: absolute;
+  left: 25px;
+  top: 35px;
+  border: 4px solid white;
+  border-radius: 50%;
+}
+.info {
+  width: 100%;
+  height: 65%;
+  padding-top: 30px;
+  padding-left: 30px;
+  box-sizing: border-box;
+}
+.location {
+  display: flex;
+  align-items: center;
+
+  font-size: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.editprofile {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+a {
+  margin-left: 5px;
+}

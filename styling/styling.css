@@ -1,0 +1,16 @@
+.first {
+  background-color: black;
+  color: white;
+}
+.second {
+  background-color: blueviolet;
+  text-align: center;
+  color: white;
+  font-style: italic;
+  font-weight: normal;
+}
+.third {
+  background-color: aqua;
+  color: blueviolet;
+  text-align: right;
+}

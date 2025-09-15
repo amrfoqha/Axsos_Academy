@@ -1,0 +1,54 @@
+.container {
+  width: 800px;
+  height: 600px;
+  background-color: silver;
+  padding: 1.5%;
+  margin: 0 auto;
+}
+
+.greenbox {
+  background-color: green;
+  width: 100%;
+  height: 20%;
+}
+.secondhalfbox {
+  display: flex;
+  width: 100%;
+  height: 82%;
+  padding-top: 2%;
+}
+.bluebox {
+  background-color: blue;
+  width: 20%;
+  height: 70%;
+  margin-right: 2%;
+}
+
+.redbox {
+  background-color: red;
+  width: 78%;
+  height: 90%;
+  padding-top: 2%;
+  padding-left: 2%;
+}
+.hiddeninred {
+  width: 95%;
+  height: 85%;
+}
+.yellowboxs {
+  width: 100%;
+  height: 55%;
+  display: flex;
+  justify-content: space-between;
+}
+.purplebox {
+  width: 100%;
+  height: 40%;
+  background-color: purple;
+  margin-top: 4%;
+}
+.yellowbox {
+  background-color: yellow;
+  width: 32%;
+  height: 100%;
+}

@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 1280px;
+  height: 980px;
+}
+.title {
+  display: flex;
+  align-items: center;
+  color: #497daa;
+  font-weight: 400;
+  position: relative;
+  padding-left: 8%;
+  margin-top: 2%;
+  font-size: 190%;
+}
+.title img {
+  position: absolute;
+  left: 0;
+}
+.topbar {
+  height: 6%;
+  background-color: #497daa;
+  color: white;
+  font-weight: 400;
+  padding-top: .5%;
+  padding-left: 2%;
+  font-size: 250%;
+}
+.body {
+  display: flex;
+  width: 100%;
+  height: 90%;
+  justify-content: space-between;
+}
+.body .side {
+  width: 18%;
+  height: 100%;
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 0.5%;
+}
+.body .content {
+  width: 77%;
+  height: 100%;
+  background-color: blue;
+}
+
+.body .side .topdiv {
+  width: 100%;
+  height: 35%;
+  background-color: white;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 10%;
+}
+
+.topdiv .info {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 10%;
+}
+.topdiv .info p {
+  font-size: 120%;
+  font-weight: 500;
+}
+.body .side .bottomdiv {
+  width: 100%;
+  height: 50%;
+  border-top:2px solid #a5bfd6;
+  padding-top: 30%;
+  position: relative;
+  background-image: url("./images/ad_background.png");
+  
+}
+
+.buttons {
+  width: 98%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.buttons button {
+  height: 47%;
+  color: white;
+  font-size: 120%;
+  border-radius: 8px;
+  border: none;
+  background-color: rgb(61, 123, 174);
+  box-shadow: 1px 1px 5px black;
+  bac
+}
+
+.buttons #special {
+  background-color: rgb(221, 121, 21);
+}
