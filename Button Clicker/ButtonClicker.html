@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="ButtonClicker.css" />
+    <script src="ButtonClicker.js"></script>
+  </head>
+  <body>
+    <div class="topbar">
+      <h1>Dojonary</h1>
+      <input
+        type="text"
+        name="search"
+        id="search"
+        placeholder="Search"
+      /><button onclick="togglinglogin(this)">Login</button>
+    </div>
+    <div class="content">
+      <div class="leftdiv">
+        <div class="ninja">
+          <div class="rightcard">
+            <h2>ninja</h2>
+            <h4>noun</h4>
+            <p>Plural: ninjas</p>
+            <button class="like-btn" onclick="alert('Ninja was liked')">
+              13 likes
+            </button>
+          </div>
+          <h4>
+            A practitioner skilled in the <a href="">Japanese</a> art of
+            <a href="">ninjutsu</a>
+          </h4>
+        </div>
+        <div class="ninja">
+          <div class="rightcard">
+            <h2>ninja</h2>
+            <h4>noun</h4>
+            <p>Plural: ninjas</p>
+            <button class="like-btn" onclick="alert('Ninja was liked')">
+              37 likes
+            </button>
+          </div>
+          <h4>
+            A <a href="">programmer</a> who breaks down problems with
+            <a href="">zen</a>-like focus
+          </h4>
+        </div>
+      </div>
+      <div class="rightdiv">
+        <h1>
+          Dojonary is defiend by <span style="font-weight: bold"> YOU</span>
+        </h1>
+        <button onclick="remove(this)">Add Definition</button>
+      </div>
+    </div>
+  </body>
+</html>
