@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>DojoWeather</h1>
+      <div class="cities">
+        <button onclick="alt()">Burbank</button>
+        <button onclick="alt()">chicago</button>
+        <button onclick="alt()">dallas</button>
+    </header>
+        <div class="body">
+          <div class="top">
+            <h1>San Jose</h1>
+            <div class="right">
+              <p>show temperature in</p>
+              <select name="temp" id="temp" onchange="convert(this)">
+                <option value="c">C</option>
+                <option value="f">F</option>
+              </select>
+            </div>
+          </div>
+          <div class="weather">
+            <div class="card"><h2>Today</h2><img src="some_rain.png" alt="" width="70%"><p>some rain</p>
+              <div class="numbers">
+                <h4 class="max">24</h4>
+                <h4 class="min">18</h4>
+              </div>
+        </div>
+
+        <div class="card"><h2>Tomorrow</h2><img src="some_sun.png" alt="" width="70%"><p>some sun</p>
+          <div class="numbers">
+            <h4 class="max">27</h4>
+            <h4 class="min">19</h4>
+          </div>
+      </div>
+
+      <div class="card"><h2>Friday</h2><img src="some_clouds.png" alt="" width="70%"><p>some clouds</p>
+        <div class="numbers">
+          <h4 class="max">21</h4>
+          <h4 class="min">16</h4>
+        </div>
+    </div>
+
+    <div class="card"><h2>saturday</h2><img src="some_sun.png" alt="" width="70%"><p>some sun</p>
+      <div class="numbers">
+        <h4 class="max">26</h4>
+        <h4 class="min">21</h4>
+      </div>
+  </div>
+          </div>
+          <div class="cookie"><img src="./cookie.png" alt=""width="10%" height="70%"
+            >
+          <div class="right"><h2>Stop!Cookie time</h2>
+          <p>We use cookies (sadly not the edible ones) to personlize content and ads, to prvide social media features and to analyse our traffic. <a href="#">Read more...</a></p>
+        </div>
+      <button onclick="remv()">I Accept</button></div>
+        </div>
+      </div>
+    
+  </body>
+</html>
