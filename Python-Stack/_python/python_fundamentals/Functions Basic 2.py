@@ -31,7 +31,7 @@ def values_greater_than_second(list):
                 newlist.append(el)
     print(len(newlist))
     return newlist
-y=values_greater_than_second([5,5,3,4,5,1])
+y=values_greater_than_second([5,2,3,4,5,1])
 print(y)
    
 def  length_and_value(size,value):
