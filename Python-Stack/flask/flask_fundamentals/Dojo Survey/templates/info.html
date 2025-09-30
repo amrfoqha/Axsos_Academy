@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/index.css" />
+  </head>
+  <body>
+    <div class="info">
+      <h2 style="text-decoration: underline">Submitted Info</h2>
+      <div class="namefield">
+        <label for="">Name:</label><label for="">{{session['name']}}</label>
+      </div>
+      <div class="locationfield">
+        <label for="">Dojo Location</label
+        ><label for="">{{session['Dojo_Location']}}</label>
+      </div>
+      <div class="languagefield">
+        <label for="">Favorite Language:</label
+        ><label for="">{{session['Favorite_language']}}</label>
+      </div>
+      <div class="gender">
+        <label for="">gender:</label><label for="">{{session['gender']}}</label>
+      </div>
+      <div class="color">
+        <label for="">Color chose:</label>
+        {% for color in session.get('colors') %}
+        <label for="">{{color}}</label>
+        {% endfor %}
+      </div>
+      <div class="commentfield">
+        <label for="">Comment:</label>
+
+        <label for="">{{session['comment']}}</label>
+      </div>
+      <div class="btn1">
+        <button>
+          <a href="/" style="color: white; text-decoration: none">Go Back</a>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

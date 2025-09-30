@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" href="../static/index.css" />
+  </head>
+  <body>
+    <form action="/submit" method="post" class="fff">
+      <input type="hidden" name="hidden" value="super_form" />
+      <div class="name">
+        <label for="name">Your Name:</label>
+        <input type="text" name="Name" id="name" size="21" />
+      </div>
+
+      <div class="location">
+        <label for="Location">Dojo Location</label>
+        <select name="Dojo_Location" id="Location">
+          <option value="Nablus">Nablus</option>
+          <option value="Tulkarm">Tulkarm</option>
+          <option value="Hebron">Hebron</option>
+          <option value="Ramallah">Ramallah</option>
+          <option value="Jenin">Jenin</option>
+        </select>
+      </div>
+      <div class="language">
+        <label for="Language">Favorite Language: </label>
+        <select name="Favorite_language" id="Language">
+          <option value="Arabic">Arabic</option>
+          <option value="English">English</option>
+          <option value="Franch">Franch</option>
+          <option value="Chinese">Chinese</option>
+        </select>
+      </div>
+      <div class="radio">
+        <input type="hidden" name="hidden" value="radiogroup" />
+        <div>
+          <input type="radio" id="male" name="gender" value="male" checked />
+          <label for="male">male</label>
+        </div>
+
+        <div>
+          <input type="radio" id="female" name="gender" value="female" />
+          <label for="female">female</label>
+        </div>
+      </div>
+      <div class="checkboxes">
+        <input type="checkbox" name="color" id="red" value="red" checked />
+        <label for="red">red</label>
+        <input type="checkbox" name="color" id="white" value="white" />
+        <label for="white">white</label>
+        <input type="checkbox" name="color" id="green" value="green" />
+        <label for="green">green</label>
+      </div>
+      <div class="textarea">
+        <label for="comment">Comment (optional):</label>
+        <textarea name="comment" id="comment" cols="52" rows="5"></textarea>
+      </div>
+      <div class="btn">
+        <button name="Button">Button</button>
+      </div>
+    </form>
+  </body>
+</html>
