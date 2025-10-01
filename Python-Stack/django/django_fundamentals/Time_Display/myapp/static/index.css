@@ -13,17 +13,29 @@ div {
   border: 4px dotted black;
   margin-top: 40%;
   padding: 10%;
-  text-align: center;
+
   width: 100%;
   box-shadow: 4px 4px 5px black, -4px -4px 5px black;
 }
+
+h1 {
+  text-align: center;
+}
+
 h3 {
+  text-align: center;
   margin-bottom: 10%;
   font-size: 38px;
-  color: blue;
+  color: rgb(65, 65, 180);
   border: 2px dashed black;
   width: 40%;
   padding: 20px 0px;
   border-radius: 50%;
   box-shadow: 4px 4px 5px black, -4px -4px 5px black;
+}
+h3:hover {
+  /* background-color: cyan;
+  color: wheat; */
+  margin-left: 50%;
+  transition: margin-left 0.5s ease;
 }
