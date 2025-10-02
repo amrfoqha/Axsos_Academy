@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="post" action="/users">
+      {% csrf_token %}
+      <input type="hidden" name="which_form" value="signup" />
+      <input type="text" name="first_name" />
+      <input type="text" name="last_name" />
+      <input type="text" name="email" />
+      <input type="password" name="password" />
+      <input type="submit" value="Register" />
+    </form>
+
+    <form action="/users" method="post">
+      {% csrf_token %} name:
+      <input type="hidden" name="which_form" value="login" />
+      <input type="text" name="name" id="" /> email:
+      <input type="email" name="email" id="" />
+      <button type="submit">Create User</button>
+    </form>
+  </body>
+</html>
