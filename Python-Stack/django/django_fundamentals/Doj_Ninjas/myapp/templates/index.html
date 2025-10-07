@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css' %}" />
+  </head>
+  <body>
+    {% if  not request.session.validation1 or  not request.session.validation2 %}
+    <div class="popup">
+  {% if not request.session.validation1  %}
+    Dojo's Fields can't be empty [Try again]
+    {% else %}
+    Ninja's Fields can't be empty [Try again]
+    {% endif %}
+    <a href="/flush" style="text-decoration: none; color: red; position: absolute;bottom: 20px;right: 200px;:hover{
+      color: white;
+    }">X</a>
+  </div>
+  {% endif %}
+    <div style="height: 100%;" class={% if  not request.session.validation1 or  not request.session.validation2 %} "blurred" {% else %} "unblur" {% endif %}>
+
+    <div class="forms">
+      <form action="/getdata" method="post">
+        {% csrf_token %}
+        <h1>Add a Dojo</h1>
+        <input type="hidden" value="add_dojo" name="hidden" />
+        <div class="name">
+          <label for="">Name</label><input type="text" name="name" id="" />
+        </div>
+        <div class="city">
+          <label for="">City</label><input type="text" name="city" id="" />
+        </div>
+        <div class="state">
+          <label for="">State</label><input type="text" name="state" id="" />
+        </div>
+        <input type="submit" value="Add" />
+      </form>
+      <form action="/getdata" method="post">
+        {% csrf_token %}
+        <input type="hidden" value="add_ninja" name="hidden" />
+        <h1>Add a Ninja</h1>
+        <div class="name">
+          <label for="first_name">First Name</label
+          ><input type="text" name="first_name" id="" />
+        </div>
+        <div class="city">
+          <label for="last_name">Last Name</label
+            ><input type="text" name="last_name" id="" />
+        </div>
+        <div class="state">
+          <label for="dojo">Dojo</label
+            ><select name="dojo" id="">
+            {% for dojo in dojos %}
+            <option value="{{dojo.id}}">{{dojo.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <input type="submit" value="Add" />
+      </form>
+    </div>
+    <div class="data">
+      <h2>All the Dojos</h2>
+      <ul>
+        {% for dojo in dojos %}
+
+        <li>
+          <span
+          style="
+              text-decoration: underline;
+              cursor: pointer;
+              color: rgb(56, 56, 144);
+              border: 1px solid black;
+              background-color: rgb(124, 180, 161);
+              border-radius: 5px;
+              "
+            onclick="window.location.href = '/delete_dojo/{{dojo.id}}/';"
+            >delete</span
+            >
+            Ninjas at the {{dojo.name}} Dojo -{{dojo.ninjas.count}}
+             {% for ninja in dojo.ninjas.all %}
+          <ol>
+            <li>{{ninja.first_name}} {{ninja.last_name}}</li>
+          </ol>
+          {% endfor %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  </body>
+</html>

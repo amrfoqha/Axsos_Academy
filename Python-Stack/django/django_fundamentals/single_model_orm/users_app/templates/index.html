@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'index.css'%}" />
+  </head>
+  <body>
+    <div class="message" style="display: {{request.session.validation}};">
+      <button>
+        <a href="/hide_alert" style="text-decoration: none; color: black">X</a>
+      </button>
+      The input field can't be empty . <br />
+      Try again
+    </div>
+    <div class="container">
+      <h1>All the Users</h1>
+      <div class="data">
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+          </tr>
+          {% for el in data %}
+          <tr>
+            <td>{{el.id}}</td>
+            <td>{{el.first_name}} {{el.last_name}}</td>
+            <td>{{el.email_address}}</td>
+            <td>{{el.age}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <form action="/display" method="post">
+        {% csrf_token %}
+        <h1>Add a User</h1>
+        <div class="userinfo">
+          <label for="first_name">First Name</label>
+          <input type="text" name="first_name" />
+          <label for="last_name">Last Name</label>
+          <input type="text" name="last_name" />
+        </div>
+        <div class="userinfo">
+          <label for="email"> Email </label>
+          <input type="text" name="email" style="margin-left: 15px" />
+          <label for="age">Age</label>
+          <input type="text" name="age" />
+        </div>
+        <input type="submit" value="add" />
+      </form>
+    </div>
+  </body>
+</html>

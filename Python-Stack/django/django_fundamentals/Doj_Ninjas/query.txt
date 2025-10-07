@@ -1,0 +1,69 @@
+#Query: Create 3 new dojos
+dojo1=Dojos.objects.create(name='Axsos',city='rammallah',state='almasayef')
+dojo2=Dojos.objects.create(name='knowledge',city='nablus',state='rafidya')
+dojo3=Dojos.objects.create(name='alquds',city='jerusalem',state='old city')
+
+#Query: Delete the 3 dojos you just created
+dojo1.delete()
+dojo2.delete()
+dojo3.delete()
+
+#Query: Create 3 more dojos
+dojo4=Dojos.objects.create(name='alkhleel',city='hebron',state='old city')
+dojo5=Dojos.objects.create(name='alhelal',city='nablus',state='city center')
+dojo6=Dojos.objects.create(name='Diersharaf',city='nablus',state='alnori')
+
+#Query: Create 3 ninjas that belong to the first dojo
+ninja1=Ninjas.objects.create(first_name='naruto',last_name='ozumaki',dojo=dojo4)
+ninja3=Ninjas.objects.create(first_name='namkazi',last_name='minato',dojo=dojo4)
+ninja4=Ninjas.objects.create(first_name='boruto',last_name='ozumaki',dojo=dojo4)
+
+#Query: Create 3 ninjas that belong to the second dojo
+ninja2=Ninjas.objects.create(first_name='sasuke',last_name='utchiha',dojo=dojo5)
+ninja6=Ninjas.objects.create(first_name='gara',last_name='sara',dojo=dojo5)
+ninja7=Ninjas.objects.create(first_name='hataki',last_name='kakashi',dojo=dojo5)
+
+#Query: Create 3 ninjas that belong to the third dojo
+ninja5=Ninjas.objects.create(first_name='obito',last_name='utchiha',dojo=dojo6)
+ninja8=Ninjas.objects.create(first_name='madara',last_name='utchiha',dojo=dojo6)
+ninja9=Ninjas.objects.create(first_name='Hashirama',last_name='senju',dojo=dojo6)
+
+#Query: Retrieve all the ninjas from the first dojo
+all_ninja_first_dojo=dojo4.ninjas.all() 
+---------- OR ------------------------
+first_dojo=Dojos.objects.first()
+first_dojo.ninjas.all()
+
+#Query: Retrieve all the ninjas from the last dojo
+dojo6.ninjas.all()
+---------- OR ------------------------
+last_dojo=Dojos.objects.last()
+last_dojo.ninjas.all()
+
+#Query: Retrieve the last ninja's dojo
+last_ninja=Ninjas.objects.last()
+last_ninja.dojo
+
+#Create and run the migration files to update the table in your database. If needed, provide a default value of "old dojo"
+C:\Users\ASUS\Desktop\courseFSD\Axsos Assaignments\Python-Stack\django\django_fundamentals\Doj_Ninjas>py manage.py makemigrations
+It is impossible to add a non-nullable field 'desc' to dojos without specifying a default. This is because the database needs something to populate existing rows.
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit and manually define a default value in models.py.
+Select an option: 1
+Please enter the default value as valid Python.
+The datetime and django.utils.timezone modules are available, so it is possible to provide e.g. timezone.now as a value.
+Type 'exit' to exit this prompt
+>>> 'hi'
+Migrations for 'myapp':
+  myapp\migrations\0002_dojos_desc.py
+    + Add field desc to dojos
+
+C:\Users\ASUS\Desktop\courseFSD\Axsos Assaignments\Python-Stack\django\django_fundamentals\Doj_Ninjas>py manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, myapp, sessions
+Running migrations:
+  Applying myapp.0002_dojos_desc... OK
+
+#Query: Create a new dojo
+newdojo=Dojos.objects.create(name='amr',city='diersharaf',state='nablus',desc='newfield')
