@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books & Authors</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static  'books.css' %}" />
+  </head>
+  <body>
+    <div class="content">
+      <h1>{{author.first_name}} {{author.last_name}}</h1>
+      <h1>ID :  {{author.id}}</h1>
+      <div class="desc">
+        <h1>Notes</h1>
+        <textarea name="" id="" style="font-size: 30px;" disabled>{{author.notes}}</textarea>
+      </div>
+      <ul>
+        <li style="list-style:none;">Books:
+        <ol>
+          {% for book in author.books.all %}
+          <li>{{book.title}}</li>
+          {% endfor %}
+        </ol>    
+      </li>
+    </ul>
+      
+      <form action="/link_bookTo_author" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="hidden" value="{{author.id}}">
+        <select name="books" id="">
+          {% for book in exclude_books %}
+          <option value="{{book.id}}">{{book.title}}</option>
+          {% endfor %}
+        </select>
+        <input type="submit" value="Add" />
+    </from>
+    </div>
+  </body>
+</html>

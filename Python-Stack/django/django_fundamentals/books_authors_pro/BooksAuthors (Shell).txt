@@ -1,0 +1,93 @@
+#Query: Create 5 books with the following names: C Sharp, Java, Python, PHP, Ruby
+    >>> Books.objects.create(title="C Sharb",desc="C Sharb")
+    <Books: Books object (1)>
+    >>> Books.objects.create(title="Java",desc="Java")
+    <Books: Books object (2)>
+    >>> Books.objects.create(title="Python",desc="Python")
+    <Books: Books object (3)>
+    >>> Books.objects.create(title="PHP",desc="PHP")
+    <Books: Books object (4)>
+    >>> Books.objects.create(title="Ruby",desc="Ruby")
+    <Books: Books object (5)>
+
+
+#Add a new text field in the authors table called 'notes'.
+    I added the new field called notes in Authors table like this :
+    notes=models.TextField(200)
+
+
+#Create and run the migration files to update the table in your database.
+    and then in cmd i write py manage.py makemigrations
+    the powerShell ask me to put an value to the data inside Authors Table 
+    so i decided to put "this is an old data" instead of default value 
+    then py manage.py migrate
+    then i receive the OK message that mean the changes is applied 
+
+#Query: Change the name of the C Sharp book to C#
+    >>> book_temp=Books.objects.get(title="C Sharb")
+    >>> book_temp.title="C#"
+    >>> book_temp.title
+    'C#'
+    
+#Query: Change the first name of the 4th author to Bill    
+    >>> author_temp=Authors.objects.get(id=4)
+    >>> author_temp.first_name="Bill"
+    >>> author_temp.first_name
+    'Bill'
+
+#Query: Assign the first author to the first 2 books 
+    >>> book1=Books.objects.first()
+    >>> book1.authors.add(Authors.objects.first())
+    >>> book2=Books.objects.get(id=2)
+    >>> book2.authors.add(Authors.objects.first())
+
+#Query: Assign the second author to the first 3 books
+    >>> book1=Books.objects.first()
+    >>> book1.authors.add(Authors.objects.get(id=2))
+    >>> book2=Books.objects.get(id=2)
+    >>> book2.authors.add(Authors.objects.get(id=2))
+    >>> book3=Books.objects.get(id=3)
+    >>> book3.authors.add(Authors.objects.get(id=2))
+
+#Query: Assign the third author to the first 4 books
+    >>> book1=Books.objects.first()
+    >>> book1.authors.add(Authors.objects.get(id=3))
+    >>> book2=Books.objects.get(id=2)
+    >>> book2.authors.add(Authors.objects.get(id=3))
+    >>> book3=Books.objects.get(id=3)
+    >>> book3.authors.add(Authors.objects.get(id=3))
+    >>> book4=Books.objects.get(id=4)
+    >>> book4.authors.add(Authors.objects.get(id=3))
+
+#Query: Assign the fourth author to the first 5 books (or in other words, all the books)
+    >>> author4=Authors.objects.get(id=4)
+    >>> first_four_books=Books.objects.all()[0:5]
+    >>> author4.books.add(*first_four_books)
+
+#Query: Retrieve all the authors for the 3rd book    
+    >>> book3=Books.objects.get(id=3)
+    >>> records=book3.authors.all()
+    >>> records
+    <QuerySet [<Authors: Authors object (2)>, <Authors: Authors object (3)>, <Authors: Authors object (4)>]>
+
+#Query: Remove the first author of the 3rd book
+    >>> book3=Books.objects.get(id=3)
+    >>> first_one=book3.authors.first()
+    >>> book3.authors.remove(first_one)
+
+#Query: Add the 5th author as one of the authors of the 2nd book
+    >>> second_book=Books.objects.get(id=2)
+    >>> second_book.authors.add(Authors.objects.get(id=5))
+
+#Query: Find all the books that the 3rd author is part of
+    >>> third_author=Authors.objects.get(id=3)
+    >>> all_books=third_author.books.all()
+    >>> all_books
+    <QuerySet [<Books: Books object (1)>, <Books: Books object (2)>, <Books: Books object (3)>, <Books: Books object (4)>]>
+
+#Query: Find all the authors that contributed to the 5th book
+    >>> fifth_book=Books.objects.get(id=5)
+    >>> all_authors=fifth_book.authors.all()
+    >>> all_authors
+    <QuerySet [<Authors: Authors object (4)>]>
+
