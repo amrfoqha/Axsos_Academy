@@ -29,7 +29,7 @@ def link_authorTo_book(request):
     author_id=request.POST['authors']
     book_id=request.POST['hidden']
     link_author_book(book_id,author_id)
-    return redirect(f"/books/{book_id}/")
+    return redirect(f"/books/{book_id}")
     
 def Author(request):
     authors=get_authors()

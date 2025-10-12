@@ -5,7 +5,6 @@ class Books(models.Model):
     desc= models.TextField(200)
     created_at= models.DateTimeField(auto_now_add=True)
     updated_at= models.DateTimeField(auto_now=True)
-
 class Authors(models.Model):
     first_name=models.CharField(max_length=45)
     last_name=models.CharField(max_length=45)
@@ -43,23 +42,28 @@ def get_author(id):
     return Authors.objects.get(id=id)
 
 def exclude_authors(book_id):
-    temp_book=get_book(book_id)
-    all_authors=temp_book.authors.all()
-    all=Authors.objects.all()
-    authors_list=[]
-    for el in all:
-        if el not in all_authors:
-            authors_list.append(el)
-    return authors_list
+    # temp_book=get_book(book_id)
+    # all_authors=temp_book.authors.all()
+    # all=Authors.objects.all()
+    # authors_list=[]
+    # for el in all:
+    #     if el not in all_authors:
+    #         authors_list.append(el)
+    # return authors_list
+    authors=Authors.objects.exclude(books=book_id)
+    return authors
 
 def exclude_books(author_id):
-    temp_author=get_author(author_id)
-    all_books=temp_author.books.all()
-    all=Books.objects.all()
-    books_list=[]
-    for el in all:
-        if el not in all_books:
-            books_list.append(el)
-    return books_list
+    # temp_author=get_author(author_id)
+    # all_books=temp_author.books.all()
+    # all=Books.objects.all()
+    # books_list=[]
+    # for el in all:
+    #     if el not in all_books:
+    #         books_list.append(el)
+    books=Books.objects.exclude(authors=author_id)
+    # return books_list
+    return books
+
 
 

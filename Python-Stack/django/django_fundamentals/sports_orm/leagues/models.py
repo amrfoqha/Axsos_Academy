@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Q
+from django.db.models import Count
 
 class League(models.Model):
 	name = models.CharField(max_length=50)
@@ -19,52 +19,39 @@ class Player(models.Model):
 	all_teams = models.ManyToManyField(Team, related_name="all_players")
 
 
-def get_baseball_leagues():
-	return League.objects.filter(sport__exact="Baseball")
-
-def get_womens_leagues():
-	return League.objects.filter( name__contains="women")
-
-def get_hockey_leagues():
-    return League.objects.filter( sport__contains="Hockey")
-
-def get_leagues_exclude_football():
-    return League.objects.exclude( sport__contains="football")
+def query1():
+	return Team.objects.filter(league__name__contains="Atlantic")
+def query2():
+	return Player.objects.filter(curr_team__team_name__contains="Boston Penguins")
+def query3():
+	return Player.objects.filter(curr_team__league__name__iexact="International Collegiate Baseball Conference")
+def query4():
+	return Player.objects.filter(curr_team__league__name__iexact="American Conference of Amateur Football").filter(last_name__contains="Lopez")
+def query5():
+	return Player.objects.all()
+def query6():
+	return Team.objects.filter(curr_players__first_name__contains="Sophia")
+def query7():
+	return League.objects.filter(teams__curr_players__first_name__contains="Sophia")
+def query8():
+	return Player.objects.exclude(curr_team__team_name__contains="Rough")
+def query9():
+	player=Player.objects.filter(first_name="Samuel")
+	return Team.objects.filter(all_players__in=player)
+def query10():
+	team=Team.objects.filter(team_name="Tiger-Cats",location="Manitoba")
+	return Player.objects.filter(all_teams__in=team)
+def query11():
+	team=Team.objects.filter(team_name="Vikings",location="Wichita")
+	return Player.objects.filter(all_teams__in=team).exclude(curr_team__in=team)
+def query12():
+	players=Player.objects.filter(first_name__contains="Jacob",last_name="Gray")
+	return Team.objects.filter(all_players__in=players).exclude(curr_players__in=players)
+def query13():
+    teams=Team.objects.filter(league__name__icontains="atlantic Federation")
+    return Player.objects.filter(all_teams__in=teams).filter(first_name__iexact="Joshua")
+def query14():
+    return Team.objects.annotate(num_players=Count('all_players')).filter(num_players__gte=12)
+def query15():
+    return Player.objects.annotate(count_of_teams=Count('all_teams')).order_by('count_of_teams')
     
-def get_leagues_conference():
-    return League.objects.filter( name__contains="conf")
-
-
-def get_leagues_in_Atlantic():
-    return    League.objects.filter(name__contains="Atlantic")
-
-def get_Teams_in_Dallas():
-    return    Team.objects.filter(location__contains="Dallas")
-def get_Teams_name_Raptors():
-    return    Team.objects.filter(team_name__contains="Raptors")
-
-
-def get_Teams_location_City():
-    return    Team.objects.filter(location__contains="city")
-
-
-def get_Teams_name_startwith():
-    return    Team.objects.filter(team_name__startswith="T")
-
-def get_all_Teams_order():
-    return    Team.objects.order_by('location')
-
-def get_all_Teams_Reverse_order():
-    return    Team.objects.order_by('-location')
-
-def get_players_lastname():
-    return    Player.objects.filter(last_name__contains="Cooper")
-def get_players_firstname():
-    return    Player.objects.filter(first_name__contains="Joshua")
-
-def get_players_lastname_except():
-    return    Player.objects.filter(last_name__contains="Cooper").exclude(first_name__contains="Joshua")
-def get_players_lastname_with_firstname():
-   
-	return Player.objects.filter(Q(first_name__contains="Alexander") | Q(first_name__contains="Wyatt"))
-
