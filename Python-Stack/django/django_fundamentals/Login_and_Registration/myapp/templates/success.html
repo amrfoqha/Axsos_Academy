@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body class="relative h-[]">
+    <h1 class="text-5xl mt-10 ml-20">Success! Welcome, {{user.first_name}}!</h1>
+    <h3 class="text-3xl text-green-500 ml-20 mt-5">Successfully registered (or logged in)! </h3>
+
+    <a href="/flush_session" class="text-blue-700 text-3xl  underline hover:text-blue-300 absolute right-10
+    top-[-20px]">Log Out</a>
+</body>
+
+</html>
