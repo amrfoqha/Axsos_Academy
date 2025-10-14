@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body class="mt-10 ml-10 text-2xl  ">
+    <a href="/"
+        class="font-[400] bg-black rounded-2xl text-[11px] pt-1 px-1 absolute h-10 right-0 mr-2 top-2 hover:bg-amber-400 hover:text-black shadow-[1px_1px_10px_black] text-blue-600">Go
+        to
+        courses</a>
+    <h1 class="text-pink-700">course: <span
+            class="text-yellow-600 underline underline-offset-8 under">{{course.name}}</span>
+    </h1>
+    <h1 class="mt-10">comments:</h1>
+    {% for comment in course.comments.all %}
+    <ul class="ml-5">
+        <li>{{comment.comment}}</li>
+    </ul>
+    {% endfor %}
+    <form action="/add_comment" method="post" class="w-[100%]">
+        {% csrf_token %}
+        <div class=" w-3/4 flex h-12 mt-5 ml-5">
+            <input type="hidden" name="hidden" value="{{course.id}}">
+            <input type="text" name="comment" id="" class="border-2 text-[16px] w-3/4 rounded-2xl mr-2 pl-2" />
+
+            <input type="submit" value="Add Comment"
+                class="cursor-pointer text-[16px] border-2 rounded-2xl  text-center  border-black w-1/6 bg-amber-100 shadow-[2px_2px_10px_black]">
+
+        </div>
+    </form>
+</body>
+
+</html>

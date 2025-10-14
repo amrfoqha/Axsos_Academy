@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body class=" " style="height: 500px;">
+    <form action="/add_course" method="post" class="text-3xl h-3/4 w-3/4 ml-20 mt-10 relative">
+        {% csrf_token %}
+        <h1 class="mb-5 ml-10 ">Add a new course</h1>
+        <div><label for="name">Name:</label><input type="text" name="name" id="" class="border-2 border-black ml-[10%]">
+        </div>
+        <div class="mt-5 h-[100%]"> <label for="desc">Description:</label><input type="text" name="desc" id=""
+                class="border-2 border-black ml-[5%] h-[40%]"></div>
+        <input type="submit" value="Add"
+            class="border-4 border-black shadow-[4px_4px_0px_black] text-white  absolute bottom-10 mt-0 ml-[32%]  w-32 h-12 bg-red-500 cursor-pointer hover:bg-green-300">
+    </form>
+    {% if messages %}
+    <ul class="messages mb-5">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }} text-red-500 text-2xl mt-2 ml-40" {% endif %}>
+            {{ message }}
+        </li>
+
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="w-3/4 h-3/4 ml-10 font-light">
+        <h1 class="mb-5 text-5xl ml-[4%]">Courses</h1>
+        <table class="border-2 border-black w-11/12  text-2xl  ">
+            <tr class="  font-light bg-gray-400">
+                <th class="font-normal border-l-2 border-r-2 border-black w-1/5">Course Name</th>
+                <th class="font-normal border-l-2 border-r-2 border-black">Description</th>
+                <th class="font-normal border-l-2 border-r-2 border-black">Date Added</th>
+                <th class="font-normal border-l-2 border-r-2 border-black">Actions</th>
+            </tr>
+            {% for course in courses %}
+            <tr>
+                <th class="font-normal border-l-2 border-r-2 border-black w-1/5">{{course.name}}</th>
+                <th class="font-normal border-l-2 border-r-2 border-black w-1/2">{{course.description.description}}</th>
+                <th class="font-normal border-l-2 border-r-2 border-black w-3/4">{{course.created_at}}</th>
+                <th class="font-light px-2"><a href="/destroy/{{course.id}}"
+                        class="text-blue-600 text- mr-2 hover:text-blue-300 underline">remove</a>|<a
+                        href="/comment/{{course.id}}"
+                        class="text-blue-600  ml-2 hover:text-blue-300 underline">comment</a></th>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+</body>
+
+</html>
