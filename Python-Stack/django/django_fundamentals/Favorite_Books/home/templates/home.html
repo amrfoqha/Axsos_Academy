@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <div
+        class="flex justify-between  pb-5 pt-5 px-10 text-3xl border-b-[2px] sticky z-50 w-[100%] overflow-hidden top-0  h-[6%]">
+        <h1>Coding Dojo</h1>
+        <div class="flex justify-between w-[27%] pr-10">
+            <h1 class="flex items-center ">Welcome <span
+                    class="text-red-600 text-5xl ml-2 mb-1">{{user.first_name}}!</span>
+            </h1>
+            <a href="/flush_session"
+                class="text-blue-600  border-[1px]  border-black shadow-[3px_3px_20px_black] rounded-2xl w-[23%] text-center pt-1 bg-green-300 hover:bg-gray-700 hover:shadow-[3px_3px_20px_gray] hover:text-orange-300">Logout</a>
+        </div>
+
+    </div>
+    <div class="flex justify-evenly mr-[15%]">
+
+        <form action="/home/add_book" method="POST" class="mr-[25%] mt-10 w-[35%] text-3xl">
+            {% csrf_token %}
+            <h1 class="text-3xl ml-28 ">Add a Favorite Book</h1>
+            <div class="mt-16 flex justify-between w-[100%]"><label for="" class="ml-4">Title</label><input type="text"
+                    name="title" id="" class="border-[2px] border-black rounded-2xl">
+            </div>
+
+            <div class="mt-8 flex justify-between w-[100%] "><label for="" class="ml-4">Description</label><input
+                    type="text" name="desc" id=""
+                    class="border-[2px] border-black rounded-2xl text-[16px] w-[61%] h-20">
+            </div>
+            <input type="submit" value="Add"
+                class="border-[2px] border-black rounded-2xl w-28 py-1 hover:shadow-[4px_4px_20px_black] mt-10 ml-[40%] hover:bg-blue-400 hover:cursor-pointer">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %} {% if "addBook_" in message.tags %}
+                <li {% if message.tags %} class="{{ message.tags }} text-red-500 text-[20px] mt-2 ml-40" {% endif %}>
+                    {{ message }}
+                </li>
+                {% endif %} {% endfor %}
+            </ul>
+            {% endif %}
+
+
+        </form>
+        <a href="/home/Favorites" class="underline text-[28px] text-blue-500 absolute left-20 top-[60%]">Go
+            To
+            Favorites</a>
+        <div class="mt-10">
+            <h1 class="text-5xl ml-5">All Books</h1>
+            {% for book in books %}
+            <div class="mt-5"><a href="/home/show_book/{{book.id}}"
+                    class="underline text-[28px] text-blue-500">{{book.title}}</a>
+                <h1 class="mt-2 text-[24px]">(added by {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}})
+                </h1>
+                {% if book in user.liked_books.all %}
+                <h1 class="text-[24px]">This is your Favorites</h1>
+                {% else %}
+                <a href="/home/add_to_fav/{{book.id}}" class="underline text-[28px] text-blue-500">Add to Favorite</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+
+    <div
+        class="flex justify-between  pb-5 pt-5 px-10 text-3xl border-b-[2px] sticky z-50 w-[100%] overflow-hidden top-0  h-[6%]">
+        <h1>Coding Dojo Wall</h1>
+        <div class="flex justify-end w-[40%] pr-10 text-[22px]">
+            <h1 class="flex items-center mr-16">Welcome <span
+                    class="text-red-600 text-5xl ml-2 mb-1">{{user.first_name}}!</span>
+            </h1>
+            <div class="w-[50%] mt-2">
+
+                <a href="/"
+                    class="text-blue-600  border-[1px]  border-black shadow-[3px_3px_20px_black] rounded-2xl w-[23%] text-center py-2 px-2 bg-green-300 hover:bg-gray-700 hover:shadow-[3px_3px_20px_gray] hover:text-orange-300">Go
+                    to home</a>
+                <a href="/flush_session"
+                    class="text-blue-600  border-[1px]  border-black shadow-[3px_3px_20px_black] rounded-2xl w-[15%] text-center  py-2 px-2 bg-green-300 hover:bg-gray-700 hover:shadow-[3px_3px_20px_gray] hover:text-orange-300">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-evenly mr-[15%]">
+
+        <form action="/home/update" method="POST" class="mt-5 w-1/2">
+            {% csrf_token %}
+            <input type="hidden" name="hidden" value="{{book.id}}" id="">
+            <input type="text" name="newtitle" {% if book not in user.books_uploaded.all %} disabled {% endif %}
+                value="{{book.title}}" class="border-[2px] text-4xl ml-2 text-center pb-1 border-black mt-2">
+            <h1 class="text-[22px] ml-5">Added by: {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}}</h1>
+            <h1 class="text-[22px] ml-5">Added on: {{book.created_at}}</h1>
+            <h1 class="text-[22px] ml-5">Last updated on: {{book.Updated_at}}</h1>
+            <div class="text-[22px] ml-5 flex mt-4">
+                <label for="newdesc">Description:</label>
+                <textarea name="newdesc" {% if book not in user.books_uploaded.all %} disabled {% endif %}
+                    class="border-[1px] border-black ml-4 px-4 pt-2 resize-none text-[16px] w-[35%] h-20">{{book.desc}}</textarea>
+            </div>
+            {% if book in user.books_uploaded.all %}
+            <div class="mt-5 h-60 ml-[25%]">
+                <input type="submit" value="Update"
+                    class="  border-black  py-2 px-2 shadow-[2px_2px_15px_black] rounded-2xl cursor-pointer bg bg">
+                <a href="/home/delete_book/{{book.id}}"
+                    class=" border-black  py-[9px] ml-5 px-3 shadow-[2px_2px_15px_black] rounded-2xl  cursor-pointer bg bg">Delete</a>
+
+            </div>
+            {% endif %}
+            {% if book not in user.liked_books.all %}
+
+            <a href="/home/add_to_fav/{{book.id}}"
+                class="underline text-2xl text-blue-400 absolute top-[25%] left-[35%]">Add to Favorite</a>
+
+            {% endif %}
+        </form>
+
+        <div class="mt-10 text-2xl">
+            <h1>Users who Like This Book:</h1>
+            <ul>
+
+                {% for this_user in book.users_who_like.all %}
+                <li class="ml-5">{{this_user.first_name}} {{this_user.last_name}}
+
+                    {% if book in user.liked_books.all %}
+                    <a href="/home/unlike/{{book.id}}" class="text-blue-500 ml-10">Unlike</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body class="flex ">
+
+
+  <form action="check_succession" method="post" class="w-1/2 text-4xl ml-[5%] mt-10 items-center">
+    {% csrf_token %}
+    <input type="hidden" name="hidden" value="registration" />
+    <h1 class="text-center mt-5 mb-5 w-3/4">Registration</h1>
+    <div class="name w-3/4 flex justify-between ">
+      <label for="first_name">First Name</label><input type="text" name="first_name" id=""
+        class=" border-2 border-black " />
+    </div>
+    <div class="mt-10 w-3/4 flex justify-between">
+      <label for="last_name">Last Name</label><input type="text" name="last_name" id=""
+        class=" border-black border-2" />
+    </div>
+    <div class="mt-10 w-3/4 flex justify-between">
+      <label for="email">Email</label><input type="email" name="email" id="" class=" border-black border-2" />
+    </div>
+    <div class="mt-10 w-3/4 flex justify-between">
+      <label for="password">Password</label><input type="password" name="password" id=""
+        class=" border-black border-2" />
+    </div>
+    <div class="mt-10 w-3/4 flex justify-between">
+      <label for="Confirm_PW">Confirm Password</label><input type="password" name="confirm_pw" id=""
+        class=" border-black border-2 " />
+    </div>
+    <input type="submit" value="Register"
+      class="mt-10  border-black border-4 py-2 px-2 shadow-[3px_3px_0px_black]  ml-60 cursor-pointer bg bg" />
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %} {% if "reg_" in message.tags %}
+      <li {% if message.tags %} class="{{ message.tags }} text-red-500 text-2xl mt-2 ml-40" {% endif %}>
+        {{ message }}
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+    {% endif %}
+
+  </form>
+  <form action="check_succession" method="post" class="w-1/2 text-4xl ml-[5%] mt-10 items-center">
+    {% csrf_token %}
+    <input type="hidden" name="hidden" value="login" />
+    <h1 class="text-center mt-5 mb-5 w-3/4">Login</h1>
+    <div class="name w-3/4 flex justify-between ">
+      <label for="email">Email</label><input type="email" name="email" id="" class="  border-2 border-black " />
+    </div>
+    <div class="mt-10 w-3/4 flex justify-between">
+      <label for="password">Password</label><input type="password" name="password" id=""
+        class=" border-black border-2" />
+    </div>
+
+
+    <input type="submit" value="Register"
+      class="mt-10  border-black border-4 py-2 px-2 shadow-[3px_3px_0px_black]  ml-60 cursor-pointer bg bg" />
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %} {% if "log_" in message.tags %}
+      <li {% if message.tags %} class="{{ message.tags }} text-red-500 text-2xl mt-2 ml-40" {% endif %}>
+        {{ message }}
+      </li>
+      {% endif %} {% endfor %}
+    </ul>
+    {% endif %}
+  </form>
+</body>
+
+</html>

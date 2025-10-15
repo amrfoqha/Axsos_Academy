@@ -86,7 +86,7 @@ def delete_message_with_id(message_id):
 
     message = Messages.objects.get(id=message_id)
     now = timezone.now()
-    if now - message.created_at <= timedelta(minutes=30):
+    if message.created_at > now - timedelta(minutes=30):
         message.delete()
         return True  
     else:
