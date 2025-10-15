@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amadon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body class="ml-[35%] auto mt-[8%] h-[500px]">
+    <h3 class="text-5xl text-red-500">Thank you for your business!</h3>
+    <div class="ml-10 mt-5 text-2xl h-[50%]">
+        <p class="mb-3 w-3/4">We charged your credit card for <span class="text-red-700 underline">${{price}}</span></p>
+        <p class="mb-3 w-3/4">You have ordered <span class="text-red-700 underline">{{ordered}}</span> items so far and
+            spent <span class="text-red-700 underline">${{total}}</span> with Amadon.com!</p>
+        <p class="mb-3 w-3/4">The first recent order is $<span
+                class="text-red-700 underline">{{first_recent.total_price}}</span></p>
+        <p class="mb-3 w-3/4">The total quantity of all orders combined: <span
+                class="text-red-700 underline">{{total_quantity_of_all_orders}}</span></p>
+        <p class="mb-3 w-3/4">The total price of all orders combined: $<span
+                class="text-red-700 underline">{{charged_for_all_orders}}</span></p>
+    </div>
+    <p><a href="/"
+            class="border-[1px] border-black rounded-2xl text-3xl px-10 bg-amber-300 ml-[15%] mt-[10%] hover:shadow-[2px_2px_10px_blue]">Go
+            Back</a>
+    </p>
+</body>
+
+</html>

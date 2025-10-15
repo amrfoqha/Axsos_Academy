@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amadon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body class="pt-10 pl-40 bg-blue-100 h-[600px]">
+    <h1 class="text-3xl ml-40">Amadon Store!</h1>
+    <table class="mt-10 text-2xl w-1/2 text-center  h-[60%] border-[1px]  border-black shadow-[3px_3px_30px_black]">
+        <thead class="bg-blue-200 h-16 border-b-[1px] border-black">
+            <tr class="">
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in all_products %}
+            <tr class="hover:bg-blue-200">
+                <form action="/checkout" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="desc" value="{{product.description}}">
+                    <td>{{product.description}}</td>
+                    <td><input type="hidden" name="price" value="{{product.price}}">{{product.price}}</td>
+                    <td><select name="quantity" class="border-[1px] border-black">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select></td>
+                    <td><input type="submit" value="Buy!" class="hover:underline hover:text-blue-400 cursor-pointer">
+                    </td>
+                </form>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

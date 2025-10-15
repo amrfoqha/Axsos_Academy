@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body class="h-[1500px] w-[1900px] mx-auto">
+    <div
+        class="flex justify-between  pb-5 pt-5 px-10 text-3xl border-b-[2px] sticky z-50 w-[100%] overflow-hidden top-0  h-[6%]">
+        <h1>Coding Dojo Wall</h1>
+        <div class="flex justify-between w-[27%] pr-10">
+            <h1 class="flex items-center ">Welcome <span
+                    class="text-red-600 text-5xl ml-2 mb-1">{{user.first_name}}!</span></h1>
+            <a href="/flush_session"
+                class="text-blue-600 underline border-[1px]  border-black shadow-[3px_3px_20px_black] rounded-2xl w-[23%] text-center pt-.5 bg-green-300 hover:bg-gray-700 hover:shadow-[3px_3px_20px_gray] hover:text-orange-300">Logout</a>
+        </div>
+    </div>
+    <form action="/account/add_message" method="POST" class="ml-24 mt-10 relative h-[16%]">
+        {% csrf_token %}
+        <h1 class="mb-3 ml-5 text-2xl">Post a message</h1>
+        <textarea name="message" id="" cols="220" rows="5" class="border-[2px] border-black"
+            class="resize-none "></textarea>
+        <button
+            class="bg-blue-800 border-[3px] border-black shadow-[3px_3px_0px_black] hover:bg-blue-300 text-white absolute top-[75%] right-[10%] w-[15%] h-[18%] text-2xl pb-3 ">Post
+            a
+            message</button>
+    </form>
+    <div class="w-[100%]">
+
+        {% for message in messages %}
+        <div class=" flex content-between w-[100%] border-t-2 border-black pt-4">
+
+            <h1 class="ml-16 text-2xl text-blue-700"><span class="text-red-600 text-4xl"> {{message.user.first_name}}
+                </span>-
+                {{message.created_at}}
+            </h1>
+            {% if message.user.id == user.id %}
+
+            <a href="/account/delete_message/{{message.id}}"
+                class=" text-2xl text-red-700 hover:underline hover:text-black ml-[6%] mt-3">delete
+                message</a>
+            {% endif %}
+        </div>
+        <p class="ml-20 text-[18px] mt-2 text-green-950">{{message.message}}</p>
+
+        {% for comment in message.comments.all|dictsort:"created_at" reversed %}
+        <div class="mt-4 ml-10">
+            <h1 class="ml-16 text-2xl text-red-600"><span class="text-blue-700 text-3xl"> {{comment.user.first_name}}
+                </span>-
+                {{comment.created_at}}
+            </h1>
+            <p class="ml-20 text-[22px] mt-2 text-orange-600">{{comment.comment}}</p>
+        </div>
+        {% endfor %}
+
+        <form action="/account/add_comment" method="post" class="flex ml-[30%] mt-10 mb-10 h-[3%] text-[16px]">
+            {% csrf_token %}
+            <input type="hidden" name="hidden" value="{{message.id}}">
+            <textarea name="comment" id="" cols="90" rows="1" class="border-[2px] border-black mr-5 "
+                class="resize-none "></textarea>
+            <button
+                class="bg-blue-800 border-[3px] border-black shadow-[3px_3px_0px_black] hover:bg-blue-300 text-white w-[15%]  text-2xl pb-2 ">Post
+                a
+                comment</button>
+
+
+        </form>
+        {% endfor %}
+    </div>
+
+
+
+
+</body>
+
+</html>
