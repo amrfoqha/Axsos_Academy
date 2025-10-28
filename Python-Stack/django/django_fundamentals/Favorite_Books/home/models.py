@@ -24,6 +24,9 @@ class Books(models.Model):
     users_who_like=models.ManyToManyField(Users,related_name="liked_books",null=True)
     object=BookManager()
     
+class img(models.Model):
+    img= models.ImageField(upload_to='home/static/images/') 
+    
     
 def create_book(title,desc,user_id):
     user=get_user(user_id)

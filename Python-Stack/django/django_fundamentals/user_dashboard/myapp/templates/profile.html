@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body class="h-[900px]">
+    <div
+        class=" h-20 flex justify-between mt-4 rounded-xl  mx-[14%]  pt-5 px-[8%] sticky top-0 text-3xl w-[70%] bg-white shadow-[2px_2px_20px_black]">
+        <div class=" flex  justify-evenly ">
+            <a href=" /" class="mr-10 hover:text-blue-100">Test App</a>
+            <a href="/dashboard" class="hover:text-blue-100 text-black mr-10">Dashboard</a>
+            <a href="/user_profile/{{client.id}}" class="text-blue-100 ">Profile</a>
+
+        </div>
+        {% if not request.session.logged_in %}
+        <a href="/display_login" class="hover:text-blue-100">Sign in</a>
+        {% else %}
+        <a href="logout" class="hover:text-blue-100">Log Out</a>
+        {% endif %}
+    </div>
+
+    <h1 class="mt-20 ml-[20%] text-2xl font-medium">Edit Profile</h1>
+    <div class="flex justify-start mt-4">
+        <fieldset class="border-2 ml-[20%] w-1/4 pb-4 ">
+            <legend class="ml-2 px-2">Edit Information</legend>
+            <form action="edit/{{client.id}}" method="post" class="">
+                <div class=" ml-10"><label for="email" class="block">Email Address </label><input type="email"
+                        name="email" id="" value="{{client.email}}" class="border-2 w-2/3 border-black pl-2">
+                </div>
+                <div class=" ml-10"><label for="first_name" class="block">First Name</label><input type="text"
+                        name="first_name" id="" value="{{client.first_name}}" class="border-2 w-2/3 border-black pl-2">
+                </div>
+                <div class=" ml-10"><label for="last_name" class="block">Last Name</label><input type="text"
+                        name="last_name" id="" value="{{client.last_name}}" class="border-2 w-2/3 border-black pl-2">
+                </div>
+                <input type="submit" value="Save"
+                    class="border-2 cursor-pointer border-black bg-green-500 text-white shadow-[2px_2px_0px_black] w-20 right-0 ml-[70%] mt-10">
+            </form>
+        </fieldset>
+        <fieldset class="border-2 ml-20 w-1/4 pb-4  ">
+            <legend class="ml-2 px-2">Change Password</legend>
+            <form action="change_password/{{client.id}}" method="post">
+                <div class=" ml-10"><label for="password" class="block">Password </label><input type="password"
+                        name="password" id="" class="border-2 w-2/3 border-black pl-2">
+                </div>
+                <div class=" ml-10"><label for="confirm_password" class="block">Confirm Password</label><input
+                        type="password" name="confirm_password" id="" class="border-2 w-2/3 border-black pl-2">
+                </div>
+                <input type="submit" value="Change password"
+                    class="border-2 cursor-pointer border-black bg-green-500 shadow-[2px_2px_0px_black] px-2 text-white right-0 ml-[50%] mt-10">
+            </form>
+        </fieldset>
+    </div>
+    <div class="mx-auto">
+        <fieldset class="border-2 ml-20 w-1/4 pb-4  ">
+            <legend class="ml-2 px-2">Edit Description</legend>
+            <form action="edit_description/{{client.id}}" method="post">
+                <div class=" mx-10"><label for="description" class="block">description</label>
+                    <textarea name="description" id="" cols="100" class="border-2 border-black"></textarea>
+                    <input type="submit" value="Save"
+                        class="border-2 cursor-pointer border-black bg-green-500 shadow-[2px_2px_0px_black] px-2 text-white right-0 ml-[50%] mt-10">
+            </form>
+        </fieldset>
+    </div>
+</body>
+
+</html>

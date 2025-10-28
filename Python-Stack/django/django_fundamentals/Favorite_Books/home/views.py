@@ -77,6 +77,15 @@ def Favorites(request):
         return redirect('/')
    
     
-        
+def view_test(request):
+  
+    return render(request,'test.html')        
+def add_img(request):
+    img.objects.create(img=request.FILES.get('img'))
+    context={
+        'img':img.objects.get(id=4)
+    }
+    return render(request,'test.html',context)        
+
     
         

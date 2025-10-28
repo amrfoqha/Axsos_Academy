@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body class="h-[800px]">
+    <div
+        class=" h-20 flex justify-between mt-4 rounded-xl  mx-[14%]  pt-5 px-[8%] fixed text-3xl w-[70%] bg-white shadow-[2px_2px_20px_black]">
+        <div class=" flex  justify-evenly ">
+            <a href=" /" class="mr-10 hover:text-blue-100">Test App</a>
+            <a href="/dashboard" class="hover:text-blue-100 text-black">Dashboard</a>
+        </div>
+        {% if not request.session.logged_in %}
+        <a href="/display_login" class="hover:text-blue-100">Sign in</a>
+        {% else %}
+        <a href="logout" class="hover:text-blue-100">Log Out</a>
+        {% endif %}
+    </div>
+
+
+
+    <div class="flex  justify-evenly sm:h-screen p-4 pt-28">
+        <div class="max-w-md w-full  border border-gray-300 rounded-2xl px-8 pt-8 mt-5 h-[95%] ">
+            <div class="text-center pb-2">
+                <h1 class="text-2xl">Add new user</h1>
+            </div>
+
+            <form action="/add_new_user" method="post">
+                {% csrf_token %}
+                <div class="space-y-6">
+                    <div>
+                        <label class="text-slate-900 text-sm font-medium mb-2 block">Email</label>
+                        <input name="email" type="text"
+                            class="text-slate-900 bg-white border border-gray-300 w-full text-sm px-4 py-3 rounded-md outline-blue-500"
+                            placeholder="Enter email" />
+                    </div>
+                    <div>
+                        <label class="text-slate-900 text-sm font-medium mb-2 block">First Name</label>
+                        <input name="first_name" type="text"
+                            class="text-slate-900 bg-white border border-gray-300 w-full text-sm px-4 py-3 rounded-md outline-blue-500"
+                            placeholder="Enter First Name" />
+                    </div>
+                    <div>
+                        <label class="text-slate-900 text-sm font-medium mb-2 block">Last Name</label>
+                        <input name="last_name" type="text"
+                            class="text-slate-900 bg-white border border-gray-300 w-full text-sm px-4 py-3 rounded-md outline-blue-500"
+                            placeholder="Enter Last Name" />
+                    </div>
+                    <div>
+                        <label class="text-slate-900 text-sm font-medium mb-2 block">Password</label>
+                        <input name="password" type="password"
+                            class="text-slate-900 bg-white border border-gray-300 w-full text-sm px-4 py-3 rounded-md outline-blue-500"
+                            placeholder="Enter password" />
+                    </div>
+                    <div>
+                        <label class="text-slate-900 text-sm font-medium mb-2 block">Confirm Password</label>
+                        <input name="confirm_password" type="password"
+                            class="text-slate-900 bg-white border border-gray-300 w-full text-sm px-4 py-3 rounded-md outline-blue-500"
+                            placeholder="Enter confirm password" />
+                    </div>
+                </div>
+
+                <div class="mt-12">
+                    <button type="submit"
+                        class="w-full py-3 px-4 text-sm tracking-wider font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none cursor-pointer">
+                        Create an account
+                    </button>
+                </div>
+
+            </form>
+        </div>
+        <div class="text-center mt-10 w-1/4">
+
+            <a href="/dashboard"
+                class="px-6 text-center py-2.5 min-w-[200px] mt-10  rounded-lg cursor-pointer hover:shadow[1px_1px_10px_black]  text-white h-10 text-sm tracking-wider font-medium border-0 outline-0 bg-purple-700 hover:bg-purple-800">Go
+                to dashboard</a>
+            <div class="mt-10 text-center ">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %} {% if "reg_" in message.tags %}
+                    <li {% if message.tags %} class="{{ message.tags }} text-red-500 text-1xl mt-2" {% endif %}>
+                        {{ message }}
+                    </li>
+                    {% endif %} {% endfor %}
+                </ul>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
