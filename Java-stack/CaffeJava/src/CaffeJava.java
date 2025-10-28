@@ -1,4 +1,4 @@
-public class CafeJava {
+public class CaffeJava {
     public static void main(String[] args) {
         String generalGreeting = "Welcome to Cafe Java, ";
         String pendingMessage = ", your order will be ready shortly";
