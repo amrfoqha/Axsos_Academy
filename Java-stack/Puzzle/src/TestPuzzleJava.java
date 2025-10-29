@@ -16,6 +16,7 @@ public class TestPuzzleJava {
         String Password=generator.generatePassword();
         System.out.println(Password);
 
+
         ArrayList<String> PasswordSets=generator.getNewPasswordSet(10);
         System.out.println(PasswordSets);
 
