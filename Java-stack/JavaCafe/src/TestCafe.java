@@ -22,34 +22,34 @@ public class TestCafe {
 
          System.out.println("----- Display Menu Test-----");
 
-//         ArrayList<String> menu = new ArrayList<String>();
-//         menu.add("drip coffee");
-//         menu.add("cappuccino");
-//         menu.add("latte");
-//         menu.add("mocha");
-//         appTest.displayMenu(menu);
-
-//         System.out.println("\n----- Add Customer Test-----");
-//         ArrayList<String> customers = new ArrayList<String>();
-//         // --- Test 4 times ---
-//         for (int i = 0; i < 4; i++) {
-//             appTest.addCustomer(customers);
-//             System.out.println("\n");
-//         }
-
-        appTest.printPriceChart("spanish latte",2.0,4);
-
-        ArrayList<String> menu = new ArrayList<String>();
-        ArrayList<Double> prices = new ArrayList<Double>();
-         menu.add("coffee");
+         ArrayList<String> menu = new ArrayList<String>();
+         menu.add("drip coffee");
          menu.add("cappuccino");
          menu.add("latte");
          menu.add("mocha");
+         appTest.displayMenu(menu);
+
+         System.out.println("\n----- Add Customer Test-----");
+         ArrayList<String> customers = new ArrayList<String>();
+         // --- Test 4 times ---
+         for (int i = 0; i < 4; i++) {
+             appTest.addCustomer(customers);
+             System.out.println("\n");
+         }
+
+        appTest.printPriceChart("spanish latte",2.0,4);
+
+        ArrayList<String> newmenu = new ArrayList<String>();
+        ArrayList<Double> prices = new ArrayList<Double>();
+        newmenu.add("coffee");
+        newmenu.add("cappuccino");
+        newmenu.add("latte");
+        newmenu.add("mocha");
          prices.add(2.1);
          prices.add(4.3);
          prices.add(2.15);
          prices.add(5.2);
-         appTest.displayMenu(menu,prices);
+         appTest.displayMenu(newmenu,prices);
 
         Scanner in=new Scanner(System.in);
         ArrayList<String> Temp=new ArrayList<String>();
