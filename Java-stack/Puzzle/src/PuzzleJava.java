@@ -20,6 +20,7 @@ public class PuzzleJava {
         String alphs="abcdefghijklmnopqrstuvwxyz";
         for (int i = 0; i < 8; i++) {
             password= password.concat(String.valueOf(alphs.charAt(random.nextInt(26))));
+
         }
 
         return password;
@@ -28,26 +29,19 @@ public class PuzzleJava {
     public ArrayList<String> getNewPasswordSet(int length){
         ArrayList<String> PasswordSets = new ArrayList<String>();
         for (int i = 0; i < length; i++) {
-
-        String password="";
-        String alphs="abcdefghijklmnopqrstuvwxyz";
-        for (int j = 0; j < 8; j++) {
-            password=password.concat(String.valueOf(alphs.charAt(random.nextInt(26))));
-        }
-            PasswordSets.add(password);
+            PasswordSets.add(generatePassword());
         }
         return PasswordSets;
     }
-//    public ArrayList<String> shufflePassword(String Password){
-//        ArrayList<String> arr= new ArrayList<String>();
-//        arr=Password;
+//    public String shufflePassword(String Password){
+//        String shufflepass=Password;
+//
 //
 //        for (int i = 0; i < Password.length; i++) {
 //            int z = random.nextInt(Password.length);
 //            int y = random.nextInt(Password.length);
-//            Char temp = arr.get(z);
-//            arr.set(z, y);
-//            arr.set(y, temp);
+//            char temp = arr.get(z);
+//
 //        }
 //
 //

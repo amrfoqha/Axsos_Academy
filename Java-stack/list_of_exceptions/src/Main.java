@@ -9,6 +9,7 @@ public class Main {
         myList.add(48);
         myList.add("Goodbye World");
 
+
         for (int i = 0; i < myList.size(); i++) {
             try {
                 Integer CastValue=(Integer) myList.get(i);
@@ -17,6 +18,5 @@ public class Main {
                 System.out.println(String.format("error happened at index %d, where the value = %s",i,myList.get(i)));
             }
         }
-
     }
 }
