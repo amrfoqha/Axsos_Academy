@@ -36,6 +36,10 @@ public class TestOrderItem {
         order5.setIsReady(true);
         order5.getStatusMessage();
         order5.display();
+        order4.display();
+        order3.display();
+        order2.display();
+        order1.display();
 
 
 
