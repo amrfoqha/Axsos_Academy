@@ -12,5 +12,6 @@ public class Main {
         System.out.println(trackList.get("Demons"));
         trackList.forEach((s, s2) -> System.out.println("Title: "+s+"\t"+"| Lyrics: "+s2));
 
+
     }
 }
