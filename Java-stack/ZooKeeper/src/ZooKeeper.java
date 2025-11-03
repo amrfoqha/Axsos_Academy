@@ -21,6 +21,5 @@ public class ZooKeeper {
         b.fly();
         b.fly();
         b.displayEnergy();
-
     }
 }
