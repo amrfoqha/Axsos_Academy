@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 500px;
+    height: 500px;
+    margin:0px auto;
+    padding-top: 250px;
+}
+.maindiv {
+    width: 100%;
+    display: flex;
+    font-size: 32px;
+}
+a {
+    margin-left: 50px;
+    width: 50%;
+}
+.date, .time{
+    width: 500px;
+    text-align: center;
+    font-size: 32px;
+    color: blueviolet;
+}

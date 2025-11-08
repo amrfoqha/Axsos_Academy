@@ -13,6 +13,7 @@ public class Physician extends User implements HIPAACompliantUser {
     Physician(Integer IDcopy){
         super.setId(IDcopy);
         patientNotes=new ArrayList<String>();
+        super();
 
 
 
