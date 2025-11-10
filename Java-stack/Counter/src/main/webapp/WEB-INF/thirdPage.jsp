@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 11/10/2025
-  Time: 12:07 PM
+  Time: 12:53 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -12,8 +12,6 @@
     <title>Title</title>
 </head>
 <body>
-<h1>You have Visited <a href="#">http://localhost:8081/</a> ${count} times.   </h1>
-<h2><a href="http://localhost:8081/">Test another visit ?</a></h2>
-<h2><a href="/reset">reset your counter</a></h2>
+<h1 class="home">Welcome to Third Page to increment by 3 </h1>
 </body>
 </html>
