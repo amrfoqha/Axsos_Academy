@@ -12,10 +12,10 @@
     <title>Title</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="mx-auto  mt-20 w-[500px]">
-<h1 class="text-4xl text-blue-700 ">${book.title}</h1>
-<h1 class="text-3xl text-red-700 mt-10">Description: <span class="text-blue-500">${book.description}</span></h1>
-<h1 class="text-3xl text-red-700 mt-2">Language: <span class="text-blue-500">${book.language}</span></h1>
-<h1 class="text-3xl text-red-700 mt-2">Number of Pages: <span class="text-blue-500">${book.pages}</span></h1>
+<body class="mx-auto  flex-col content-center justify-center w-[700px] bg-gray-300">
+<h1 class="text-7xl text-blue-700 text-center font-medium ">${book.title}</h1>
+<h1 class="text-4xl text-red-700 mt-10 text-center">Description: <span class="text-blue-500">${book.description}</span></h1>
+<h1 class="text-4xl text-red-700 mt-4 text-center">Language: <span class="text-blue-500">${book.language}</span></h1>
+<h1 class="text-4xl text-red-700 mt-4 text-center">Number of Pages: <span class="text-blue-500">${book.pages}</span></h1>
 </body>
 </html>

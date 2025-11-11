@@ -28,7 +28,7 @@
   <c:forEach var="book" items="${books}" >
     <tr>
       <td class="text-center py-1 px-2 border-[1px] m-1">${book.id}</td>
-      <td class="text-center py-1 px-2 border-[1px] m-1">${book.title}</td>
+      <td class="text-center py-1 px-2 border-[1px] m-1 underline text-blue-700"> <a href="/books/${book.id}"> ${book.title} </a></td>
       <td class="text-center py-1 px-2 border-[1px] m-1">${book.language}</td>
       <td class="text-center py-1 px-2 border-[1px] m-1">${book.pages}</td>
     </tr>
