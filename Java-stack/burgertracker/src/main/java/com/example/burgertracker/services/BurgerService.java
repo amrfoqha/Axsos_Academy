@@ -21,7 +21,7 @@ public class BurgerService {
     }
 
     public List<Burger> allRecords() {
-        return (List<Burger>) burgerRepository.findAll();
+        return  burgerRepository.findAll();
     }
 
     public Burger get(Long id) {

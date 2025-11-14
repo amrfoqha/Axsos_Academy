@@ -12,7 +12,7 @@
 <div class="flex-col justify-center  w-1/3 mx-auto text-2xl bg-yellow-50 mt-20">
     <div class="flex justify-between"><h1 class="text-start text-4xl text-blue-500">Burger Tracker</h1><a href="/" class="text-2xl text-blue-700 underline" >Go Back</a></div>
     <form:form action ="/edit/${burger.id}" method = "post" modelAttribute = "burger" class="w-[100%] border border-black p-10 mt-4">
-
+        
         <p class="">
             <div class="flex justify-between">
                 <form:label path="name">Burger Name</form:label>
