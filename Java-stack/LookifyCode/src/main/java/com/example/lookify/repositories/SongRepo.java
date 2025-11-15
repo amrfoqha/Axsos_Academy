@@ -16,4 +16,6 @@ public interface SongRepo extends CrudRepository<Song, Long> {
 	
 	@Query(value = "SELECT * FROM songs order by rating desc limit 10", nativeQuery = true) 
 	List<Song> getTopTen();
+
+	List<Song> findByArtistContainingIgnoreCase(String artist);
 }

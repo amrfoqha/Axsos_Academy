@@ -44,4 +44,7 @@ public class SongService {
 	public void deleteSong(Song song) {
 		songRepo.delete(song);
 	}
+	public List<Song> findByArtist(String artist) {
+		return songRepo.findByArtistContainingIgnoreCase(artist);
+	}
 }

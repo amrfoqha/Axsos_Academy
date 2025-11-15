@@ -2,8 +2,6 @@ package com.example.lookify.controllers;
 
 import java.util.List;
 
-import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +11,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.lookify.models.Song;
 import com.example.lookify.services.SongService;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class SongController {
@@ -37,8 +37,13 @@ public class SongController {
 	}
 	
 	@GetMapping("/search")
-	public String search() {
-		// TODO - finish later
+	public String search(@RequestParam("q") String artist, Model model) {
+
+		if (artist == null || artist.trim().isEmpty()) {
+			model.addAttribute("songs", songService.allSongs());
+		return "dashboard.jsp";
+		}
+		model.addAttribute("songs", songService.findByArtist(artist));
 		return "dashboard.jsp";
 	}
 	
