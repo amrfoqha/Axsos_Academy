@@ -18,7 +18,8 @@
         <form:label path="dojo" class="text-2xl mr-2">Dojo Name:</form:label>
         <form:select path="dojo" class="border pl-2 h-10 rounded-xl ml-10 w-1/3">
 
-                <form:options items="${dojos}" itemValue="id" itemLabel="name"/>    
+                <form:options items="${dojos}" itemValue="id" itemLabel="name"/> 
+                   
         </form:select>
         </div>
             <div>

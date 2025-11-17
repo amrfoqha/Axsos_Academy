@@ -15,7 +15,7 @@ import jakarta.validation.Valid;
 
 @Controller
 public class TravelController {
-
+    
     private final TravelService travelService;
 
     public TravelController(TravelService travelService) {
