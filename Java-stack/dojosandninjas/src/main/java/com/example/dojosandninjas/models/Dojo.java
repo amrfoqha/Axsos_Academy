@@ -45,10 +45,6 @@ public class Dojo {
     public Dojo() {
     }
 
-    
-
-
-
 
     public Dojo(String name) {
         this.name = name;
