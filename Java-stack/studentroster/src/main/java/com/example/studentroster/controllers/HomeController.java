@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.studentroster.models.Dorm;
 import com.example.studentroster.models.Student;
@@ -22,6 +23,8 @@ public class HomeController {
     DormService dormService;
     @Autowired
     StudentService studentService;
+
+ 
 
     @GetMapping("/dorms")
     public String index(Model model) {
@@ -64,12 +67,18 @@ public class HomeController {
         return "showdorm.jsp";
     }
     @GetMapping("/dorms/{dormId}/remove/{studentId}")
-    public String removeStudent(@PathVariable("dormId") Long dormId, @PathVariable("studentId") Long studentId, Model model) {
+    public String removeStudent(@PathVariable("dormId") Long dormId, @PathVariable("studentId") Long studentId,
+            Model model) {
         Student student = studentService.findStudentById(studentId);
         if (student != null) {
             student.setDorm(null);
             studentService.save(student);
         }
-        return "redirect:/dorms/"+dormId+"/remove/"+studentId;
+        return "redirect:/dorms/" + dormId + "/remove/" + studentId;
+    }
+    
+      @RequestMapping(value="/**")
+    public String redirect() {
+        return "redirect:/dorms";
     }
 }
