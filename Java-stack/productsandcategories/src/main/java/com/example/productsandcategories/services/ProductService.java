@@ -33,15 +33,16 @@ public class ProductService {
     }
     
     public List<Product> productsNotON(Category category) {
-        List<Product> pArr = category.getProducts();
-        List<Product> cArr = getAllProducts();
-        List<Product> Aux = new ArrayList<Product>();
-        for (Product product : cArr) {
-            if (!pArr.contains(product)) {
-                Aux.add(product);
-            }
-        }
-        return Aux;
+        // List<Product> pArr = category.getProducts();
+        // List<Product> cArr = getAllProducts();
+        // List<Product> Aux = new ArrayList<Product>();
+        // for (Product product : cArr) {
+        //     if (!pArr.contains(product)) {
+        //         Aux.add(product);
+        //     }
+        // }
+        // return Aux;
+        return productRepo.findByCategoriesNotContaining(category);
     }
 
     public void linkTo(Long categoryId, Long productId) {
