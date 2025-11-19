@@ -24,6 +24,7 @@ public class UserService {
         }
         if (!user.getPassword().equals(user.getConfirm())) {
             result.rejectValue("confirm", "Matches", "passwords doesn't matches.");
+            
         }
         if(result.hasErrors()){
             return null;

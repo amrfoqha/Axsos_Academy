@@ -44,6 +44,7 @@ public class BurgerController {
     @PostMapping("/edit/{id}")
     public String editBurger(@PathVariable("id") Long id, @Valid @ModelAttribute("burger") Burger burger, BindingResult result) {
         if (result.hasErrors()) {
+            
             return "editBurger.jsp";
         }
         System.out.println("\n\n\n\n\n\n\n\n\nUpdating burger with ID: " + burger.getId());
