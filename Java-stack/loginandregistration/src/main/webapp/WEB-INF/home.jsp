@@ -16,8 +16,6 @@
                 <body class="mx-auto w-1/3 text-center mt-5 text-3xl ">
                     <h1 class="text-4xl text-red-700 ">Welcome!</h1>
                     <h1 class="text-2xl">Join our growing community.</h1>
-                    
-                        
                             <table class="border-2 border-black mx-auto w-full p-10 mt-10  bg-white rounded-lg shadow-lg ">
                                 <tr class="bg-[#9fc4f8] "><td class="border-2 border-black py-2" colspan="2"><h1>Register</h1></td></tr>
                                 <form:form action="/user/new" method="POST" modelAttribute="user">
