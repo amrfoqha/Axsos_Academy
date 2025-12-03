@@ -1,7 +1,7 @@
 //Problem 1
 const cars = ["Tesla", "Mercedes", "Honda"];
 const [randomCar] = cars;
-const [, otherRandomCar] = cars;
+const [,otherRandomCar] = cars;
 
 console.log(randomCar);
 console.log(otherRandomCar);
@@ -14,9 +14,9 @@ const employee = {
   company: "Tesla",
 };
 
-// const { name: otherName } = employee;
+const { name: otherName } = employee;
 // console.log(name);
-// console.log(otherName);
+console.log(otherName);
 //output: Error, Elon
 
 //Problem 3
