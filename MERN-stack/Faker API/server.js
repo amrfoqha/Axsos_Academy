@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
 const port = 8000;
-import { faker } from "@faker-js/faker";
 const { faker } = require("@faker-js/faker");
 
-export function createUser() {
+function createUser() {
   return {
     password: faker.internet.password(),
     email: faker.internet.email(),
@@ -15,15 +14,15 @@ export function createUser() {
   };
 }
 
-export const users = faker.helpers.multiple(createUser, {
+const users = faker.helpers.multiple(createUser, {
   count: 5,
 });
 
-export function createCompany() {
+function createCompany() {
   return {
     _id: faker.database.mongodbObjectId(),
     name: faker.company.name(),
-    address: faker.location.address(),
+    address: faker.location.streetAddress(),
     street: faker.location.street(),
     city: faker.location.city(),
     state: faker.location.state(),
@@ -32,7 +31,7 @@ export function createCompany() {
   };
 }
 
-export const companies = faker.helpers.multiple(createCompany, {
+const companies = faker.helpers.multiple(createCompany, {
   count: 5,
 });
 
