@@ -6,7 +6,7 @@ function ResultComponent({ result, textAPI, setResult }) {
   const flag = textAPI.includes("people");
 
   useEffect(() => {
-    axios.get("https://swapi.dev/api/" + textAPI).then((res) => {
+    axios.get("https://swapi.info/api/" + textAPI).then((res) => {
       setResult(res.data);
       console.log(res.data);
     });

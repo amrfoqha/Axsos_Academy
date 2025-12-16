@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function SearchComponents({ setTextAPI }) {
   const [text, setText] = useState("people");
   const [ID, setID] = useState(1);
+  const [lisst, setList] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setTextAPI(text + "/" + ID + "/");
   };
+
+  useEffect(() => {
+    axios.get("https://swapi.info/api/").then((res) => {
+      setList(Object.keys(res.data));
+    });
+  }, []);
 
   return (
     <form
@@ -24,8 +32,11 @@ function SearchComponents({ setTextAPI }) {
           onChange={(e) => setText(e.target.value)}
           className="border-2 border-black py-1"
         >
-          <option value="people">People</option>
-          <option value="planets">Planets</option>
+          {lisst.map((el, index) => (
+            <option value={el} key={index}>
+              {el}
+            </option>
+          ))}
         </select>
       </div>
       <div className="flex justify-evenly gap-2 w-fit">
