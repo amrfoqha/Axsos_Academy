@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Form() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
+  const [products, setProducts] = useState([]);
   const [titleError, setTitleError] = useState(false);
   const [priceError, setPriceError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
@@ -18,6 +20,10 @@ function Form() {
       .post("http://localhost:8000/api/products", product)
       .then((res) => {
         console.log(res.data);
+        setProducts([...products, res.data]);
+        setTitle("");
+        setPrice("");
+        setDescription("");
       })
       .catch((err) => {
         console.log(err);
@@ -48,6 +54,16 @@ function Form() {
       setDescription(e.target.value);
     }
   };
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/products")
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [products]);
 
   return (
     <>
@@ -109,6 +125,14 @@ function Form() {
         </div>
         <button className="mt-5">Submit</button>
       </form>
+
+      <div className="mt-5">
+        {products.map((product) => (
+          <div key={product._id} className="text-2xl mt-2 hover:underline">
+            <Link to={`/products/${product._id}`}>{product.title}</Link>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
