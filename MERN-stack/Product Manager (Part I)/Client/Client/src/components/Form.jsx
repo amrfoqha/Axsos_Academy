@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Skeleton from "@mui/material/Skeleton";
+import DeleteButton from "./DeleteButton";
 
 function Form() {
   const [title, setTitle] = useState("");
@@ -10,6 +12,7 @@ function Form() {
   const [titleError, setTitleError] = useState(false);
   const [priceError, setPriceError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +23,8 @@ function Form() {
       .post("http://localhost:8000/api/products", product)
       .then((res) => {
         console.log(res.data);
-        setProducts([...products, res.data]);
+
+        setProducts(() => [...products, res.data]);
         setTitle("");
         setPrice("");
         setDescription("");
@@ -55,15 +59,18 @@ function Form() {
     }
   };
   useEffect(() => {
+    setLoading(true);
     axios
       .get("http://localhost:8000/api/products")
       .then((res) => {
         setProducts(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setLoading(false);
       });
-  }, [products]);
+  }, []);
 
   return (
     <>
@@ -127,11 +134,35 @@ function Form() {
       </form>
 
       <div className="mt-5">
-        {products.map((product) => (
-          <div key={product._id} className="text-2xl mt-2 hover:underline">
-            <Link to={`/products/${product._id}`}>{product.title}</Link>
+        {!loading ? (
+          products.map((product) => (
+            <div
+              key={product._id}
+              className="flex items-center justify-between mt-2 w-1/2 mx-auto"
+            >
+              <div className="text-2xl  hover:underline flex justify-center">
+                <Link to={`/products/${product._id}`}>{product.title}</Link>
+              </div>
+              <DeleteButton
+                setProducts={setProducts}
+                products={products}
+                id={product._id}
+              />
+            </div>
+          ))
+        ) : (
+          <div className="flex flex-col items-center justify-between mt-2 w-1/2 mx-auto">
+            {Array.from({ length: 10 }, (_, i) => i + 1).map((num, index) => (
+              <Skeleton
+                key={index}
+                variant="rounded"
+                className="mt-2 w-full"
+                height={38}
+                animation="wave"
+              />
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </>
   );
