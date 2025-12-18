@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Authors = () => {
   const [authors, setAuthors] = useState([]);
+  const Navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +20,7 @@ const Authors = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.get("http://localhost:8000/api/authors");
+      const res = await axios.delete("http://localhost:8000/api/authors" + id);
       setAuthors(res.data);
     } catch (error) {
       console.log(error);
@@ -34,7 +35,7 @@ const Authors = () => {
       >
         Add new Author
       </Link>
-      <p className="text-3xl text-start mt-5 mb-2 ml-2 ">Add new Author:</p>
+      <p className="text-3xl text-start mt-5 mb-2 ml-2 ">Authors:</p>
 
       <table className="border border-black w-full h-full  text-2xl border-spacing-0.5 border-separate">
         <thead className="w-full">
@@ -48,11 +49,15 @@ const Authors = () => {
             <tr key={el._id}>
               <td className="border border-black">{el.name}</td>
               <td className="flex justify-center gap-4  border border-black py-2">
-                <Link to={"/authors/edit"}>
-                  <button onClick={() => {}} className="text-sm">
-                    Edit
-                  </button>
-                </Link>
+                <button
+                  onClick={() => {
+                    Navigate(`/authors/update/${el._id}`);
+                  }}
+                  className="text-sm"
+                >
+                  Edit
+                </button>
+
                 <button
                   onClick={() => {
                     handleDelete(el._id);

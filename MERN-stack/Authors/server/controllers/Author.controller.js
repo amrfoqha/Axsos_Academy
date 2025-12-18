@@ -21,7 +21,7 @@ module.exports.createAuthor = async (req, res) => {
 module.exports.editAuthor = async (req, res) => {
   try {
     const author = await Author.findByIdAndUpdate(req.params.id, req.body);
-    res.josn(author);
+    res.json(author);
   } catch (error) {
     res.json(Json.Stringfy(error));
   }
@@ -29,7 +29,7 @@ module.exports.editAuthor = async (req, res) => {
 module.exports.deleteAuthor = async (req, res) => {
   try {
     await Author.findByIdAndDelete(req.params.id);
-    res.josn({ msg: "delete success!" });
+    res.json({ msg: "delete success!" });
   } catch (error) {
     res.json(error);
   }
@@ -37,7 +37,7 @@ module.exports.deleteAuthor = async (req, res) => {
 module.exports.getAuthor = async (req, res) => {
   try {
     const author = await Author.findById(req.params.id);
-    res.josn(author);
+    res.json(author);
   } catch (error) {
     res.json(error);
   }
