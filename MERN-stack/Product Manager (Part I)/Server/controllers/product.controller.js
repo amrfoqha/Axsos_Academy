@@ -12,14 +12,12 @@ module.exports.getAllProducts = (req, res) => {
 };
 
 module.exports.getProductById = (req, res) => {
-  product
-    .findById(req.params.id)
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
+  try {
+    const prod = product.findById(req.params.id);
+    res.json(prod);
+  } catch (error) {
+    res.json(error);
+  }
 };
 
 module.exports.createProduct = (req, res) => {
